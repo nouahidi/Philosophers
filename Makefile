@@ -8,10 +8,10 @@ OBJ = $(SRC:.c=.o)
 all : $(NAME)
 
 $(NAME) : $(OBJ)
-	$(CC) $(CFLAGE) -o $(NAME)
+	$(CC) $(CFLAGE) -o $@ $^ -g
 
 %.o:%.c $(INC)
-	$(CC) $(CFLAGE) - c
+	$(CC) $(CFLAGE) -c $<
 
 clean :
 	rm -rf $(OBJ)

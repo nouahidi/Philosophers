@@ -6,11 +6,17 @@
 /*   By: nouahidi <nouahidi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:23:30 by nouahidi          #+#    #+#             */
-/*   Updated: 2023/02/13 16:10:43 by nouahidi         ###   ########.fr       */
+/*   Updated: 2023/02/13 18:38:11 by nouahidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+void	ft_error()
+{
+	write (1,"Error\n",6);
+	exit(0);
+}
 
 void	info_philo(char *str, int j, t_var	*ph)
 {
@@ -36,30 +42,32 @@ void	check_arg(char *str)
 	if (str[i] == '+' || str[i] == '-')
 	{
 		if (str[i] == '-')
-			exit(0);
+			ft_error();
 		i++;
 	}
 	if (!str[i])
-		exit(1);
-	while (str[i])
-	{
-		if (!(str[i] >= '0' && str[i] <= '9'))
-			exit(0);
+		ft_error();
+	while (str[i] && str[i] >= '0' && str[i] <= '9')
 		i++;
-	}
+	while (str[i] && (str[i] == ' ' || str[i] == '\t'))
+		i++;
+	if (str[i])
+		ft_error();
 }
 
 int main(int ac, char **av)
 {
-	int i = 0;
+	// int i = 0;
 	int j = 1;
 	t_var	ph;
-	if (ac == 5)
+	if (ac == 6)
 	{
 		while (av[j])
 		{
-			check_ar(av[j]);
+			check_arg(av[j]);
 			info_philo(av[j], j, &ph);
+			j++;
 		}
+		printf ("--->nb = %d\n", ph.nb_eat);
 	}
 }
