@@ -1,8 +1,8 @@
 NAME = philo
 INC = philo.h
-SRC = main_threads.c philo_util.c
+SRC = main_threads.c philo_util.c philo_util2.c philo_util3.c
 CC = cc
-CFLAGE = -Wall -Wextra -Werror
+CFLAGE =  -Wall -Wextra -Werror -g -fsanitize=thread
 OBJ = $(SRC:.c=.o)
 
 all : $(NAME)
